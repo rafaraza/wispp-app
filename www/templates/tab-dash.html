@@ -2,12 +2,12 @@
   <ion-content class="padding">
     <h2>Login</h2>
       <button class="button button-royal icon ion-social-facebook" ng-click="login()"></button>
-      {{user}}
-      <div ng-if="authData.facebook" class="list card">
+      <!--{{teta.user}}-->
+      <div ng-if="teta" class="list card">
         <div class="item item-avatar">
-          <img src="http://placehold.it/300x300" alt="Foto do nome">
-          <h2>Nomee</h2>
-          <p>Facebook id: 123123</p>
+          <img src="{{teta.user.photoURL}}" alt="Foto do nome">
+          <h2>{{teta.user.displayName}}</h2>
+          <p>Facebook id: {{teta.user.uid}}</p>
         </div>
       </div>
     <!--<h2>Welcome to Ionic</h2>

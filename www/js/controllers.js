@@ -3,7 +3,7 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope) {
 
   firebase.auth().getRedirectResult().then(function(result) {
-    console.log("Result: "+result);
+    console.log("Result: "+result["displayName"]);
     if (result.credential) {
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
       var token = result.credential.accessToken;
@@ -12,7 +12,7 @@ angular.module('starter.controllers', [])
     }
     // The signed-in user info.
 
-   $scope.user = result;
+   $scope.teta = result;
   }).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
@@ -32,7 +32,7 @@ angular.module('starter.controllers', [])
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
       var token = result.credential.accessToken;
       // The signed-in user info.
-      $scope.user = result;
+      $scope.teta = result;
       // ...
     }).catch(function(error) {
       // Handle Errors here.
