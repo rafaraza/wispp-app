@@ -1,18 +1,16 @@
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope) {
-
+  // Callback do Firebase para o login
   firebase.auth().getRedirectResult().then(function(result) {
-    console.log("Result: "+result["displayName"]);
     if (result.credential) {
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
       var token = result.credential.accessToken;
       // ...
-      console.log(result);
     }
-    // The signed-in user info.
-
-   $scope.teta = result;
+    // Isto salva os dados do usuário na variavel
+    // de manipulacao.
+    $scope.teta = result;
   }).catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
@@ -25,10 +23,28 @@ angular.module('starter.controllers', [])
   });
 
   var provider = new firebase.auth.FacebookAuthProvider();
-
+  //
+  //    LOGOUT  :(
+  // 
+  $scope.logout = function() {
+    firebase.auth().signOut().then(function() {
+      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+      console.log("Logout OK!");
+      $scope.teta = null;
+      // The signed-in user info.
+      // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      console.error("Erro no Logout:", error.message);
+      // ...
+    });
+  }
+  //
+  //    LOGIN :)
+  // 
   $scope.login = function() {
-
     firebase.auth().signInWithPopup(provider).then(function(result) {
+      console.log("Login OK!");
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
       var token = result.credential.accessToken;
       // The signed-in user info.
@@ -42,6 +58,7 @@ angular.module('starter.controllers', [])
       var email = error.email;
       // The firebase.auth.AuthCredential type that was used.
       var credential = error.credential;
+      console.error("Erro no Logout:", error.message);
       // ...
     });
 
