@@ -1,8 +1,10 @@
 <ion-view view-title="Dashboard">
   <ion-content class="padding">
     <h2>Login</h2>
-      <button class="button button-royal icon ion-social-facebook" ng-click="login()"></button>
+      <button ng-if="!teta" class="button button-royal icon ion-social-facebook" ng-click="login()"></button>
+      <button ng-if="teta" class="button button-royal icon ion-social-facebook" ng-click="logout()"></button>
       <!--{{teta.user}}-->
+      {{teta.user.photoURL}}
       <div ng-if="teta" class="list card">
         <div class="item item-avatar">
           <img src="{{teta.user.photoURL}}" alt="Foto do nome">
